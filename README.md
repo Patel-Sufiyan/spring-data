@@ -1,2 +1,2 @@
-# spring-data-jpa 
+# spring-data
 this repository contains spring data examples .
