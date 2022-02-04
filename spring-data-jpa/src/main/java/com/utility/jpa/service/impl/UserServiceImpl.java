@@ -18,12 +18,16 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRepository;
 
 	@Override
-	public boolean createuser(User user) {
+	public boolean createUser(User user) {
 		
 		try {
-			User newUser =userRepository.save(user);
-			log.info("User Created successfully with ID :"+newUser.getUser_Id());
-			return true;
+			userRepository.save(user);
+			if(user.getUser_Id()!=null) {
+				log.info("User Created successfully with ID :"+user.getUser_Id());
+				return true;
+			}
+			log.error("error occured while saving user to db :");
+			return false;
 		} catch (Exception e) {
 			log.error("error occured while saving user to db :"+e.getMessage());
 			return false;

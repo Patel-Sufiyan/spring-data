@@ -33,7 +33,7 @@ public class UserController {
 		if (userRepository.findByEmail(user.getEmail().trim()).isPresent()) 
 			return ResponseEntity.badRequest().body("Email already exists");
 		else {
-			if (userService.createuser(user)) {
+			if (userService.createUser(user)) {
 				return ResponseEntity.ok("User Successfully created");
 			}
 		}
@@ -41,7 +41,7 @@ public class UserController {
 	};
 	
 	@GetMapping("/getUser/{email}")
-	private ResponseEntity<?> getUser(@PathVariable String email) {
+	private ResponseEntity<?> getUser(@PathVariable(name = "email") String email) {
 		
 		Optional<User> activeUser = userRepository.findByEmail(email);
 		
